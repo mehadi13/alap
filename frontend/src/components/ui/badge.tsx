@@ -13,6 +13,8 @@ const badgeVariants = cva(
           "border border-[#E5E5E5] bg-[#F3F3F3] text-[#111111] dark:bg-[#1C1C1C] dark:text-[#F5F5F5] dark:border-[#292929]",
         destructive:
           "border border-rose-200 bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800/60",
+        success:
+          "border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/40",
         outline:
           "border border-[#E5E5E5] text-[#6B6B6B] dark:border-[#292929] dark:text-[#A3A3A3] dark:bg-[#141414]",
         gradient:

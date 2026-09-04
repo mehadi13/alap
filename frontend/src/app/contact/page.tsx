@@ -3,7 +3,7 @@
 import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ConsultationForm } from "@/features/consultation/ConsultationForm";
+import { TalkToAlapConnect } from "@/features/consultation/TalkToAlapConnect";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, Phone, MapPin, MessageSquare, Clock } from "lucide-react";
@@ -33,15 +33,9 @@ export default function ContactPage() {
 
         {/* Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
-          {/* Left Column: Form */}
+          {/* Left Column: Form & Connection Options */}
           <Card className="lg:col-span-7 p-6 sm:p-8 space-y-6">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-foreground">{t.formTitle}</h2>
-              <p className="text-xs text-muted-foreground">
-                {t.formSubtitle}
-              </p>
-            </div>
-            <ConsultationForm />
+            <TalkToAlapConnect />
           </Card>
 
           {/* Right Column: Contact Info & Details */}

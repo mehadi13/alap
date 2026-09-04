@@ -38,8 +38,40 @@ const navItems = [
   },
 ];
 
+import { useAuth } from "@/features/auth/AuthContext";
+
 export function Sidebar() {
   const pathname = usePathname();
+  const { user } = useAuth();
+
+  const isAdmin = user?.role === "ADMIN";
+
+  const navItems = [
+    {
+      label: isAdmin ? "Admin Dashboard" : "My Client Portal",
+      href: "/",
+      icon: LayoutDashboard,
+    },
+    {
+      label: isAdmin ? "Clients Directory" : "My Deployments",
+      href: "/clients",
+      icon: Users,
+    },
+    {
+      label: isAdmin ? "Consultation Queue" : "Consultation Support",
+      href: "/consultations",
+      icon: MessageSquare,
+    },
+    ...(isAdmin
+      ? [
+          {
+            label: "Settings",
+            href: "/settings",
+            icon: Settings,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <aside className="w-64 border-r border-border bg-card flex flex-col justify-between p-4 shrink-0 transition-colors duration-200">
@@ -53,10 +85,12 @@ export function Sidebar() {
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-lg text-foreground tracking-tight">ALAP</span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md bg-[#5B5CE2]/10 text-[#5B5CE2] dark:bg-[#7C7EF2]/20 dark:text-[#7C7EF2]">
-                Client Portal
+                {user?.role || "PORTAL"}
               </span>
             </div>
-            <p className="text-[11px] text-muted-foreground">Client Management Hub</p>
+            <p className="text-[11px] text-muted-foreground">
+              {isAdmin ? "Client Management Hub" : "Client Operations Portal"}
+            </p>
           </div>
         </Link>
 

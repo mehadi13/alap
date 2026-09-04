@@ -1,8 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { X, Sparkles } from "lucide-react";
-import { ConsultationForm } from "@/features/consultation/ConsultationForm";
+import { X } from "lucide-react";
+import { TalkToAlapConnect } from "@/features/consultation/TalkToAlapConnect";
 import { Logo } from "@/components/shared/Logo";
 
 interface ConsultationModalContextType {
@@ -32,7 +32,7 @@ export function ConsultationModalProvider({ children }: { children: React.ReactN
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in">
           <div
-            className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border bg-card p-6 md:p-8 shadow-2xl animate-in zoom-in-95"
+            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border bg-card p-6 md:p-8 shadow-2xl animate-in zoom-in-95"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -45,22 +45,16 @@ export function ConsultationModalProvider({ children }: { children: React.ReactN
             </button>
 
             {/* Modal Header */}
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 mb-6 text-center sm:text-left">
               <Logo variant="full" size="sm" />
-              <h2 className="text-2xl font-extrabold text-foreground flex items-center gap-2">
-                <span>Talk to ALAP</span>
-                <Sparkles className="h-5 w-5 text-[#5B5CE2] dark:text-[#7C7EF2]" />
-              </h2>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Tell us what is slowing your business down. We will analyze your workflow and contact you to design a solution.
-              </p>
             </div>
 
-            {/* Form */}
-            <ConsultationForm onSuccess={closeModal} />
+            {/* 3-Way Connect Switcher & Forms */}
+            <TalkToAlapConnect onSuccess={closeModal} />
           </div>
         </div>
       )}
     </ConsultationModalContext.Provider>
   );
 }
+

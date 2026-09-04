@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
+import { AuthProvider } from "@/features/auth/AuthContext";
+import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,15 +36,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="system">
-          <div className="flex h-screen w-full overflow-hidden">
-            <Sidebar />
-            <div className="flex flex-1 flex-col overflow-y-auto">
-              <Header />
-              <main className="flex-1 p-6 space-y-6">{children}</main>
-            </div>
-          </div>
+          <AuthProvider>
+            <AppShell>{children}</AppShell>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
+
