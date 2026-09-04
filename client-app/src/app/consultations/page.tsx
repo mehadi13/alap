@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { initialLeads, ConsultationLead } from "@/features/clients/clientsData";
+import { convertLeadToClientRecord } from "@/features/clients/clientsStore";
 import {
   Phone,
   Mail,
@@ -138,6 +139,36 @@ export default function ConsultationsQueuePage() {
       }
     } catch (err) {
       console.warn("Could not reach backend for status update:", err);
+    }
+  };
+
+  const handleConvertToClient = async (lead: ConsultationLead) => {
+    updateLeadStatus(lead.id, "Converted");
+
+    try {
+      const convertUrl = `http://localhost:8080/api/v1/clients/convert/${lead.id}`;
+      const response = await fetch(convertUrl, { method: "POST" });
+      if (!response.ok) {
+        convertLeadToClientRecord({
+          id: lead.id,
+          name: lead.name,
+          company: lead.company,
+          email: lead.email,
+          phone: lead.phone,
+          industry: lead.industry,
+          problemDescription: lead.problemDescription,
+        });
+      }
+    } catch {
+      convertLeadToClientRecord({
+        id: lead.id,
+        name: lead.name,
+        company: lead.company,
+        email: lead.email,
+        phone: lead.phone,
+        industry: lead.industry,
+        problemDescription: lead.problemDescription,
+      });
     }
   };
 
@@ -396,7 +427,7 @@ export default function ConsultationsQueuePage() {
                       <Button
                         variant="cta"
                         size="sm"
-                        onClick={() => updateLeadStatus(lead.id, "Converted")}
+                        onClick={() => handleConvertToClient(lead)}
                         className="text-xs gap-1.5"
                       >
                         <UserPlus className="h-3.5 w-3.5" />
