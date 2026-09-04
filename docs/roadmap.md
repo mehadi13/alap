@@ -1,18 +1,23 @@
-\# ALAP — Phase 1 Task List
+# ALAP — Phase 1 & 2 Task List & Implementation Status
 
-\## Brand & Marketing Website Foundation
+> **Status Update (September 2026)**: Phase 1 Marketing Website Foundation, Full Bangla/English i18n, Spring Boot Backend REST Service, and Separate Client Management FE App (`client-app`) are **Completed & Build Verified**.
 
-\*\*Phase:\*\* 1
+## Current Implementation Overview
 
-\*\*Goal:\*\* Build the production-ready ALAP public website and establish the brand, messaging, and frontend foundation required to begin customer acquisition.
+| Module | Location | Tech Stack | Status |
+| :--- | :--- | :--- | :--- |
+| **Public Frontend** | `d:\alap\frontend` | Next.js 16.3, React 19, Tailwind v4, `@xyflow/react`, `LanguageContext` | **Completed** (Port 3000) |
+| **Client Management FE** | `d:\alap\client-app` | Next.js 16.3, React 19, Tailwind v4, Lucide Icons | **Completed** (Port 3001) |
+| **Backend REST API** | `d:\alap\backend` | Spring Boot 3.4.3, Java 21 Records, Discord Webhook Service | **Completed** (Port 8080) |
+| **Documentation** | `d:\alap\docs` | GFM Markdown (`purpose.md`, `roadmap.md`, `README.md`) | **Up-to-Date** |
 
-\---
+---
 
-\# 1. Phase Objective
+# 1. Phase Objective
 
-Create a premium, trustworthy, bilingual marketing website for \*\*ALAP (আলাপ)\*\* positioned as a:
+Create a premium, trustworthy, bilingual marketing website for **ALAP (আলাপ)** positioned as a:
 
-> \*\*Business Automation & Digital Solutions Company\*\*
+> **Business Automation & Digital Solutions Company**
 
 The website must clearly communicate:
 

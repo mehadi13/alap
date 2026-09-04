@@ -19,7 +19,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
         className
       )}
     >
-      <Globe className="h-3.5 w-3.5 ml-1 text-muted-foreground" />
+      {/* <Globe className="h-3.5 w-3.5 ml-1 text-muted-foreground" /> */}
       <button
         type="button"
         onClick={() => setLocale("en")}
@@ -42,7 +42,7 @@ export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
             : "text-muted-foreground hover:text-foreground"
         )}
       >
-        বাংলা
+        বাং
       </button>
     </div>
   );
