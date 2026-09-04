@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "solutions": "Solutions",
+    "howItWorks": "How It Works",
+    "about": "About",
+    "resources": "Resources",
+    "talkToAlap": "Talk to ALAP"
+  },
+  "hero": {
+    "title": "Tell us what takes too much time. We'll turn it into a digital solution.",
+    "subtitle": "ALAP helps businesses automate repetitive work, improve customer experiences, connect systems, and build practical digital solutions.",
+    "ctaPrimary": "Talk to ALAP",
+    "ctaSecondary": "Explore Solutions"
+  }
+}

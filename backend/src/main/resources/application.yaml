@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: alap-backend
+  jackson:
+    default-property-inclusion: ALWAYS
+    serialization:
+      write-dates-as-timestamps: false
+
+# Discord Webhook Integration Configuration
+alap:
+  discord:
+    webhook-url: ${DISCORD_WEBHOOK_URL:https://discord.com/api/webhooks/1545255301899489432/YmsfHKIWUkvoD-ID9svZW53xF0f6JzfUwpYmSQb_574jn-yuxMW31YkbVgDvP8z6plup}
+
+# Management & Health Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    ai.alap.backend: DEBUG
+    org.springframework.web: INFO

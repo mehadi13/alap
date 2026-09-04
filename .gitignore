@@ -1,0 +1,92 @@
+# ==========================================
+# Comprehensive Root .gitignore for ALAP
+# ==========================================
+
+# ------------------------------------------
+# Dependencies & Package Managers
+# ------------------------------------------
+node_modules/
+**/node_modules/
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ------------------------------------------
+# Next.js & Frontend Build Outputs
+# ------------------------------------------
+.next/
+**/.next/
+out/
+**/out/
+build/
+**/build/
+dist/
+**/dist/
+
+# ------------------------------------------
+# Java & Maven Build Outputs
+# ------------------------------------------
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+
+# ------------------------------------------
+# Environment Variables & Secrets
+# ------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+
+# ------------------------------------------
+# IDE & Editor Files
+# ------------------------------------------
+.idea/
+**/.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+**/.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ------------------------------------------
+# Testing & Code Coverage
+# ------------------------------------------
+coverage/
+**/coverage/
+*.lcov
+.nyc_output/
+
+# ------------------------------------------
+# Logs & Debugging Output
+# ------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ------------------------------------------
+# Platform & Service Caches
+# ------------------------------------------
+.vercel/
+**/.vercel/
+*.tsbuildinfo
