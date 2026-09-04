@@ -8,6 +8,7 @@ import {
   Users,
   MessageSquare,
   Settings,
+  BookOpen,
   Building2,
   ExternalLink,
   LogOut,
@@ -51,6 +52,11 @@ export function Sidebar({ isCollapsed = false }: SidebarProps) {
       label: isAdmin ? "Consultation Queue" : "Consultation Support",
       href: "/consultations",
       icon: MessageSquare,
+    },
+    {
+      label: "Documentation",
+      href: "/docs",
+      icon: BookOpen,
     },
     ...(isAdmin
       ? [
