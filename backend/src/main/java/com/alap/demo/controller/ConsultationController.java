@@ -10,6 +10,10 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -66,9 +70,11 @@ public class ConsultationController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponseDto<List<ConsultationResponseDto>>> getAllConsultations() {
-        log.info("Fetching all consultation requests from DB");
-        List<ConsultationResponseDto> consultations = consultationService.getAllConsultations();
+    public ResponseEntity<ApiResponseDto<Page<ConsultationResponseDto>>> getAllConsultations(
+            @RequestParam(value = "status", required = false) String status,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        log.info("Fetching paginated consultations from DB: status={}, page={}, size={}", status, pageable.getPageNumber(), pageable.getPageSize());
+        Page<ConsultationResponseDto> consultations = consultationService.getPaginatedConsultations(status, pageable);
         return ResponseEntity.ok(ApiResponseDto.success("Consultations retrieved successfully", consultations));
     }
 

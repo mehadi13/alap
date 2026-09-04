@@ -9,6 +9,7 @@ const consultationSchema = z.object({
   businessType: z.string().optional(),
   problemDescription: z.string().min(10, "Please provide a problem description (at least 10 characters)"),
   preferredContact: z.enum(["email", "phone", "whatsapp"]).default("phone"),
+  channelType: z.enum(["message", "meeting", "call", "voice note"]).optional(),
   website: z.string().optional(),
   teamSize: z.string().optional(),
 });

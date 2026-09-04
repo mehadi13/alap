@@ -1,10 +1,5 @@
 package com.alap.demo.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 public record ConsultationRequestDto(
         String name,
         String email,
@@ -13,6 +8,7 @@ public record ConsultationRequestDto(
         String businessType,
         String problemDescription,
         String preferredContact,
+        String channelType,
         String website,
         String teamSize
 ) {}

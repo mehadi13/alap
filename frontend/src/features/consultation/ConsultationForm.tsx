@@ -62,7 +62,7 @@ export function ConsultationForm({ onSuccess, className }: ConsultationFormProps
       const response = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, channelType: "message" }),
       });
 
       const resData = await response.json();

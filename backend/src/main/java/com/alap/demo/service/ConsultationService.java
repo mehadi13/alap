@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,6 +53,26 @@ public class ConsultationService {
                 ? request.company()
                 : (request.name() != null ? request.name() + " Business" : "Independent Client");
 
+        String type = "TEXT";
+        if (request.problemDescription() != null) {
+            if (request.problemDescription().contains("[CALL BACK REQUEST]")) {
+                type = "CALL";
+            } else if (request.problemDescription().contains("[MEETING REQUEST]")) {
+                type = "MEETING";
+            }
+        }
+
+        String channelType = request.channelType();
+        if (channelType == null || channelType.isBlank()) {
+            if ("CALL".equals(type)) {
+                channelType = "call";
+            } else if ("MEETING".equals(type)) {
+                channelType = "meeting";
+            } else {
+                channelType = "message";
+            }
+        }
+
         Consultation consultation = new Consultation(
                 id,
                 request.name(),
@@ -60,7 +82,8 @@ public class ConsultationService {
                 request.businessType(),
                 request.problemDescription(),
                 request.preferredContact() != null ? request.preferredContact() : "phone",
-                "TEXT",
+                type,
+                channelType,
                 0,
                 null,
                 "New",
@@ -117,6 +140,7 @@ public class ConsultationService {
                 problemDesc,
                 "whatsapp",
                 "VOICE",
+                "voice note",
                 duration,
                 audioFileUrl,
                 "New",
@@ -141,6 +165,16 @@ public class ConsultationService {
             log.error("Error creating UrlResource for audio file: {}", filename, ex);
             return null;
         }
+    }
+
+    public Page<ConsultationResponseDto> getPaginatedConsultations(String status, Pageable pageable) {
+        Page<Consultation> page;
+        if (status != null && !status.isBlank() && !"All".equalsIgnoreCase(status)) {
+            page = consultationRepository.findByStatusIgnoreCase(status, pageable);
+        } else {
+            page = consultationRepository.findAll(pageable);
+        }
+        return page.map(this::mapToDto);
     }
 
     public List<ConsultationResponseDto> getAllConsultations() {
@@ -170,6 +204,7 @@ public class ConsultationService {
                 entity.getProblemDescription(),
                 entity.getPreferredContact(),
                 entity.getType(),
+                entity.getChannelType() != null ? entity.getChannelType() : ("VOICE".equalsIgnoreCase(entity.getType()) ? "voice note" : "message"),
                 entity.getDurationSeconds(),
                 entity.getAudioFileUrl(),
                 entity.getStatus(),

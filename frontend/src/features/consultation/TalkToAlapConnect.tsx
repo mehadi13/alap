@@ -176,51 +176,69 @@ export function TalkToAlapConnect({
     setMeetingStatus("loading");
 
     try {
-      await fetch("/api/consultation", {
+      const response = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: meetingName,
           phone: meetingPhone,
-          email: meetingEmail || "not-provided@alap.ai",
-          problemDescription: `[MEETING REQUEST] Date: ${meetingDate}, Time: ${meetingTime}. Topic: ${meetingTopic}`,
+          email: meetingEmail && meetingEmail.includes("@") ? meetingEmail : "meeting@alap.ai",
+          problemDescription: `[MEETING REQUEST] Preferred Date: ${meetingDate}, Preferred Time: ${meetingTime}. Topic: ${meetingTopic || "General Consultation Request"}`,
           preferredContact: "whatsapp",
+          channelType: "meeting",
         }),
       });
-    } catch {
-      // Fallback grace
-    }
 
-    setTimeout(() => {
+      const resData = await response.json();
+      if (response.ok && resData.success) {
+        setMeetingStatus("success");
+        if (onSuccess) setTimeout(onSuccess, 2500);
+      } else {
+        setMeetingStatus("idle");
+        alert(resData.message || "Could not process meeting request. Please check inputs.");
+      }
+    } catch {
       setMeetingStatus("success");
       if (onSuccess) setTimeout(onSuccess, 2500);
-    }, 1000);
+    }
   };
 
   const handleCallSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setCallStatus("loading");
 
+    const timeLabel = callTimeWindow === "timeMorning"
+      ? "Morning (10:00 AM - 1:00 PM)"
+      : callTimeWindow === "timeAfternoon"
+      ? "Afternoon (1:00 PM - 5:00 PM)"
+      : "Evening (5:00 PM - 8:00 PM)";
+
     try {
-      await fetch("/api/consultation", {
+      const response = await fetch("/api/consultation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: callName,
           phone: callPhone,
           email: "callback@alap.ai",
-          problemDescription: `[CALL BACK REQUEST] Preferred Time: ${callTimeWindow}`,
+          problemDescription: `[CALL BACK REQUEST] Client requested call back. Preferred Time Window: ${timeLabel}`,
           preferredContact: "phone",
+          channelType: "call",
         }),
       });
-    } catch {
-      // Fallback grace
-    }
 
-    setTimeout(() => {
+      const resData = await response.json();
+      if (response.ok && resData.success) {
+        setCallStatus("success");
+        if (onSuccess) setTimeout(onSuccess, 2500);
+      } else {
+        setCallStatus("idle");
+        alert(resData.message || "Could not process call back request. Please check inputs.");
+      }
+    } catch {
       setCallStatus("success");
       if (onSuccess) setTimeout(onSuccess, 2500);
-    }, 1000);
+    }
   };
 
   const formatSeconds = (sec: number) => {

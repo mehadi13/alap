@@ -12,6 +12,7 @@ public record ConsultationResponseDto(
         String problemDescription,
         String preferredContact,
         String type,
+        String channelType,
         Integer durationSeconds,
         String audioFileUrl,
         String status,

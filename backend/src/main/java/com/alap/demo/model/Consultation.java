@@ -32,6 +32,9 @@ public class Consultation {
 
     private String type;
 
+    @Column(name = "channel_type")
+    private String channelType;
+
     @Column(name = "duration_seconds")
     private Integer durationSeconds;
 
@@ -47,8 +50,8 @@ public class Consultation {
     public Consultation() {}
 
     public Consultation(String id, String name, String email, String phone, String company, String businessType,
-                        String problemDescription, String preferredContact, String type, Integer durationSeconds,
-                        String audioFileUrl, String status, LocalDateTime createdAt) {
+                        String problemDescription, String preferredContact, String type, String channelType,
+                        Integer durationSeconds, String audioFileUrl, String status, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -58,6 +61,7 @@ public class Consultation {
         this.problemDescription = problemDescription;
         this.preferredContact = preferredContact;
         this.type = type;
+        this.channelType = channelType;
         this.durationSeconds = durationSeconds;
         this.audioFileUrl = audioFileUrl;
         this.status = status;
@@ -134,6 +138,14 @@ public class Consultation {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getChannelType() {
+        return channelType;
+    }
+
+    public void setChannelType(String channelType) {
+        this.channelType = channelType;
     }
 
     public Integer getDurationSeconds() {

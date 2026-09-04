@@ -14,13 +14,42 @@ function useIsClient() {
   );
 }
 
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+interface ThemeToggleProps {
+  compact?: boolean;
+}
+
+export function ThemeToggle({ compact = false }: ThemeToggleProps) {
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const isClient = useIsClient();
 
   if (!isClient) {
+    return compact ? (
+      <div className="h-8 w-8 rounded-xl border border-border bg-muted/50 animate-pulse" />
+    ) : (
+      <div className="h-8 w-24 rounded-xl border border-border bg-muted/50 animate-pulse" />
+    );
+  }
+
+  const cycleTheme = () => {
+    if (theme === "light") setTheme("dark");
+    else if (theme === "dark") setTheme("system");
+    else setTheme("light");
+  };
+
+  if (compact) {
     return (
-      <div className="h-8 w-8 rounded-lg border border-border bg-muted/50 animate-pulse" />
+      <button
+        type="button"
+        onClick={cycleTheme}
+        className="h-8 w-8 rounded-xl border border-border bg-background text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer flex items-center justify-center"
+        title={`Current Theme: ${theme} (Click to switch)`}
+      >
+        {resolvedTheme === "dark" ? (
+          <Moon className="h-4 w-4 text-[#7C7EF2]" />
+        ) : (
+          <Sun className="h-4 w-4 text-[#5B5CE2]" />
+        )}
+      </button>
     );
   }
 

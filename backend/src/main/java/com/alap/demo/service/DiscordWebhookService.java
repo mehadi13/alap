@@ -35,10 +35,23 @@ public class DiscordWebhookService {
         }
 
         try {
+            String title = "🚀 New Consultation Request — ALAP (আলাপ)";
+            int color = 0x5B5CE2; // ALAP Accent Indigo
+
+            if (request.problemDescription() != null) {
+                if (request.problemDescription().contains("[CALL BACK REQUEST]")) {
+                    title = "📞 New Call Back Request — ALAP (আলাপ)";
+                    color = 0x10B981; // Emerald Green
+                } else if (request.problemDescription().contains("[MEETING REQUEST]")) {
+                    title = "📅 New Scheduled Meeting Request — ALAP (আলাপ)";
+                    color = 0x8B5CF6; // Purple
+                }
+            }
+
             Map<String, Object> embed = new LinkedHashMap<>();
-            embed.put("title", "🚀 New Consultation Request — ALAP (আলাপ)");
-            embed.put("color", 0x5B5CE2); // ALAP Accent Indigo Color
-            embed.put("description", "**Problem Description:**\n" + request.problemDescription());
+            embed.put("title", title);
+            embed.put("color", color);
+            embed.put("description", "**Details / Note:**\n" + request.problemDescription());
 
             List<Map<String, Object>> fields = new ArrayList<>();
             fields.add(createField("👤 Client Name", request.name(), true));
