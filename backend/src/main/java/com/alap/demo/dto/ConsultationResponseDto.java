@@ -1,0 +1,19 @@
+package com.alap.demo.dto;
+
+import java.time.LocalDateTime;
+
+public record ConsultationResponseDto(
+        String id,
+        String name,
+        String email,
+        String phone,
+        String company,
+        String businessType,
+        String problemDescription,
+        String preferredContact,
+        String type,
+        Integer durationSeconds,
+        String audioFileUrl,
+        String status,
+        LocalDateTime createdAt
+) {}

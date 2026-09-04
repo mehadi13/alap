@@ -24,6 +24,7 @@ export interface ConsultationLead {
   preferredContact: "whatsapp" | "phone" | "email";
   submittedAt: string;
   status: "New" | "Contacted" | "Proposal Sent" | "Converted" | "Archived";
+  audioFileUrl?: string;
 }
 
 export const initialClients: ClientRecord[] = [

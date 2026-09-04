@@ -268,6 +268,20 @@ export const dictionaries = {
       optionCallTitle: "Call",
       optionCallSubtitle: "Immediate / scheduled call",
       optionCallTag: "Phone & WhatsApp",
+      optionVoiceTitle: "Voice Note",
+      optionVoiceSubtitle: "Record audio message",
+      optionVoiceTag: "Microphone & Audio",
+
+      // Voice Tab
+      voiceHeading: "Record a Voice Message",
+      voiceDesc: "Explain your business challenge in your own words (up to 2 minutes). We will listen and respond promptly.",
+      startRecording: "Start Voice Recording",
+      stopRecording: "Stop Recording",
+      reRecord: "Record Again",
+      recordingActive: "Recording Voice...",
+      sendVoiceBtn: "Send Voice Message",
+      voiceSuccessTitle: "Voice Message Sent!",
+      voiceSuccessDesc: "Our consultants will listen to your audio inquiry and get back to you shortly via WhatsApp/Phone.",
 
       // Meeting Tab
       meetingHeading: "Book a Consultation Meeting",
@@ -566,6 +580,20 @@ export const dictionaries = {
       optionCallTitle: "কল",
       optionCallSubtitle: "তাৎক্ষণিক বা নির্ধারিত ফোন কল",
       optionCallTag: "ফোন ও হোয়াটসঅ্যাপ",
+      optionVoiceTitle: "ভয়েস বার্তা",
+      optionVoiceSubtitle: "ভয়েস নোট রেকর্ড করে পাঠান",
+      optionVoiceTag: "মাইক্রোফোন ও অডিও",
+
+      // Voice Tab
+      voiceHeading: "ভয়েস মেসেজ রেকর্ড করুন",
+      voiceDesc: "আপনার নিজের ভাষায় আপনার ব্যবসার সমস্যাটি রেকর্ড করে পাঠান (২ মিনিট পর্যন্ত)। আমরা মনোযোগ দিয়ে শুনে দ্রুত ব্যবস্থা নেব।",
+      startRecording: "ভয়েস রেকর্ড শুরু করুন",
+      stopRecording: "রেকর্ডিং থামান",
+      reRecord: "পুনরায় রেকর্ড করুন",
+      recordingActive: "রেকর্ডিং চলছে...",
+      sendVoiceBtn: "ভয়েস মেসেজ পাঠান",
+      voiceSuccessTitle: "ভয়েস মেসেজ সফলভাবে পাঠানো হয়েছে!",
+      voiceSuccessDesc: "আমাদের কনসালট্যান্টরা আপনার ভয়েস বার্তা শুনে খুব দ্রুত হোয়াটসঅ্যাপ বা ফোনে সমাধান জানাবেন।",
 
       // Meeting Tab
       meetingHeading: "পরামর্শ মিটিং শিডিউল করুন",
