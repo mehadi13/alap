@@ -76,7 +76,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "3000:3000"
+      - "3002:3002"
     environment:
       NODE_ENV: production
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://187.77.152.224:8081}
