@@ -4,13 +4,11 @@ WORKDIR /app
 
 # Copy pom.xml and download dependencies
 COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw .
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copy source code and build executable jar
 COPY src ./src
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Production Stage
 FROM eclipse-temurin:17-jre-alpine
