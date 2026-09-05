@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
 
-    const baseUrl = process.env.BACKEND_API_URL || "http://localhost:8080/api/v1/consultation";
+    const baseUrl = process.env.BACKEND_API_URL || (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultation` : "http://backend:8080/api/v1/consultation");
     let backendUrl = process.env.BACKEND_VOICE_API_URL;
     if (!backendUrl) {
       const cleanBase = baseUrl.replace(/\/+$/, "");

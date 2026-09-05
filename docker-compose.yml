@@ -69,6 +69,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://187.77.152.224:8081}
     container_name: alap-frontend
     restart: always
     depends_on:
@@ -86,6 +88,8 @@ services:
     build:
       context: ./client-app
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://187.77.152.224:8081}
     container_name: alap-client-app
     restart: always
     depends_on:

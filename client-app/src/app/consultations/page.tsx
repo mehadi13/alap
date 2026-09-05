@@ -52,7 +52,7 @@ export default function ConsultationsQueuePage() {
     if (showRefreshing) setIsRefreshing(true);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8080/api/v1/consultation";
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/consultation`;
       const response = await fetch(backendUrl);
 
       if (response.ok) {
@@ -128,7 +128,7 @@ export default function ConsultationsQueuePage() {
     );
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8080/api/v1/consultation";
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/consultation`;
       const response = await fetch(`${backendUrl.replace(/\/$/, "")}/${id}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -146,7 +146,8 @@ export default function ConsultationsQueuePage() {
     updateLeadStatus(lead.id, "Converted");
 
     try {
-      const convertUrl = `http://localhost:8080/api/v1/clients/convert/${lead.id}`;
+      const apiHost = process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081";
+      const convertUrl = `${apiHost}/api/v1/clients/convert/${lead.id}`;
       const response = await fetch(convertUrl, { method: "POST" });
       if (!response.ok) {
         convertLeadToClientRecord({

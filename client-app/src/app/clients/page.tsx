@@ -60,7 +60,7 @@ export default function ClientsDirectoryPage() {
     if (showRefreshing) setIsRefreshing(true);
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || "http://localhost:8080/api/v1/clients";
+      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/clients`;
       const response = await fetch(backendUrl);
 
       if (response.ok) {
@@ -113,7 +113,7 @@ export default function ClientsDirectoryPage() {
     if (!newClient.name || !newClient.company) return;
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || "http://localhost:8080/api/v1/clients";
+      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/clients`;
       const response = await fetch(backendUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,7 +150,7 @@ export default function ClientsDirectoryPage() {
     if (!editingClient) return;
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || "http://localhost:8080/api/v1/clients";
+      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/clients`;
       const targetId = (editingClient as any).numericId || editingClient.id.replace(/\D/g, "");
 
       const response = await fetch(`${backendUrl.replace(/\/$/, "")}/${targetId}`, {
@@ -180,7 +180,7 @@ export default function ClientsDirectoryPage() {
     if (!confirm(`Are you sure you want to delete client "${clientToDelete.company}"?`)) return;
 
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || "http://localhost:8080/api/v1/clients";
+      const backendUrl = process.env.NEXT_PUBLIC_CLIENTS_URL || `${process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081"}/api/v1/clients`;
       const targetId = (clientToDelete as any).numericId || clientToDelete.id.replace(/\D/g, "");
 
       const response = await fetch(`${backendUrl.replace(/\/$/, "")}/${targetId}`, {

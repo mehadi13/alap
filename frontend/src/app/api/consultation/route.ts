@@ -19,8 +19,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const validatedData = consultationSchema.parse(body);
 
-    const backendUrl =
-      process.env.BACKEND_API_URL || "http://localhost:8080/api/v1/consultation";
+    const apiHost = process.env.BACKEND_API_URL || (process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultation` : "http://backend:8080/api/v1/consultation");
+    const backendUrl = apiHost;
 
     // Forward request to Spring Boot Java 21 Backend Service
     try {

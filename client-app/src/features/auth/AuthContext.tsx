@@ -46,7 +46,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const API_BASE = "http://localhost:8080/api/v1/auth";
+  const API_HOST = process.env.NEXT_PUBLIC_API_URL || "http://187.77.152.224:8081";
+  const API_BASE = `${API_HOST}/api/v1/auth`;
 
   // Check stored auth session
   useEffect(() => {
