@@ -210,8 +210,8 @@ export function TalkToAlapConnect({
     const timeLabel = callTimeWindow === "timeMorning"
       ? "Morning (10:00 AM - 1:00 PM)"
       : callTimeWindow === "timeAfternoon"
-      ? "Afternoon (1:00 PM - 5:00 PM)"
-      : "Evening (5:00 PM - 8:00 PM)";
+        ? "Afternoon (1:00 PM - 5:00 PM)"
+        : "Evening (5:00 PM - 8:00 PM)";
 
     try {
       const response = await fetch("/api/consultation", {
@@ -275,16 +275,6 @@ export function TalkToAlapConnect({
             )}
           >
             <div className="space-y-1.5 flex flex-col items-center">
-              <div
-                className={cn(
-                  "h-9 w-9 rounded-xl flex items-center justify-center transition-colors",
-                  mode === "message"
-                    ? "bg-[#5B5CE2] text-white dark:bg-[#7C7EF2]"
-                    : "bg-muted text-muted-foreground group-hover:text-foreground"
-                )}
-              >
-                <MessageSquare className="h-4 w-4" />
-              </div>
               <div>
                 <div className="font-bold text-xs sm:text-sm text-foreground">
                   {t.optionMessageTitle}
@@ -311,16 +301,6 @@ export function TalkToAlapConnect({
             )}
           >
             <div className="space-y-1.5 flex flex-col items-center">
-              <div
-                className={cn(
-                  "h-9 w-9 rounded-xl flex items-center justify-center transition-colors",
-                  mode === "meeting"
-                    ? "bg-[#5B5CE2] text-white dark:bg-[#7C7EF2]"
-                    : "bg-muted text-muted-foreground group-hover:text-foreground"
-                )}
-              >
-                <Calendar className="h-4 w-4" />
-              </div>
               <div>
                 <div className="font-bold text-xs sm:text-sm text-foreground">
                   {t.optionMeetingTitle}
@@ -347,16 +327,6 @@ export function TalkToAlapConnect({
             )}
           >
             <div className="space-y-1.5 flex flex-col items-center">
-              <div
-                className={cn(
-                  "h-9 w-9 rounded-xl flex items-center justify-center transition-colors",
-                  mode === "call"
-                    ? "bg-[#5B5CE2] text-white dark:bg-[#7C7EF2]"
-                    : "bg-muted text-muted-foreground group-hover:text-foreground"
-                )}
-              >
-                <PhoneCall className="h-4 w-4" />
-              </div>
               <div>
                 <div className="font-bold text-xs sm:text-sm text-foreground">
                   {t.optionCallTitle}
@@ -383,16 +353,6 @@ export function TalkToAlapConnect({
             )}
           >
             <div className="space-y-1.5 flex flex-col items-center">
-              <div
-                className={cn(
-                  "h-9 w-9 rounded-xl flex items-center justify-center transition-colors",
-                  mode === "voice"
-                    ? "bg-[#5B5CE2] text-white dark:bg-[#7C7EF2]"
-                    : "bg-muted text-muted-foreground group-hover:text-foreground"
-                )}
-              >
-                <Mic className="h-4 w-4" />
-              </div>
               <div>
                 <div className="font-bold text-xs sm:text-sm text-foreground">
                   {t.optionVoiceTitle}
@@ -568,7 +528,7 @@ export function TalkToAlapConnect({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               <a
-                href="https://wa.me/880170000000?text=Hi%20ALAP%20Team%2C%20I%20would%20like%20to%20discuss%20a%20business%20automation%20solution."
+                href="https://wa.me/8801805550574?text=Hi%20ALAP%20Team%2C%20I%20would%20like%20to%20discuss%20a%20business%20automation%20solution."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-colors shadow-sm"
@@ -578,7 +538,7 @@ export function TalkToAlapConnect({
               </a>
 
               <a
-                href="tel:+880170000000"
+                href="tel:+8801805550574"
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-border bg-background hover:bg-muted text-foreground font-bold transition-colors shadow-xs"
               >
                 <Phone className="h-4 w-4 text-[#5B5CE2] dark:text-[#7C7EF2]" />

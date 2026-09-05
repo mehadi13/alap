@@ -60,7 +60,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="font-semibold text-foreground">{t.phoneLabel}</div>
-                    <div className="text-muted-foreground pt-0.5">+880 1700-000000</div>
+                    <div className="text-muted-foreground pt-0.5">+880 1805-550574</div>
                   </div>
                 </div>
 

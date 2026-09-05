@@ -44,11 +44,6 @@ export function ConsultationModalProvider({ children }: { children: React.ReactN
               <X className="h-5 w-5" />
             </button>
 
-            {/* Modal Header */}
-            <div className="space-y-2 mb-6 text-center sm:text-left">
-              <Logo variant="full" size="sm" />
-            </div>
-
             {/* 3-Way Connect Switcher & Forms */}
             <TalkToAlapConnect onSuccess={closeModal} />
           </div>

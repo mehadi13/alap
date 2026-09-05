@@ -85,13 +85,13 @@ export function Sidebar({ isCollapsed = false }: SidebarProps) {
           )}
         >
           <Link href="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-[#5B5CE2] dark:bg-[#7C7EF2] flex items-center justify-center text-white font-black text-lg shadow-sm shrink-0">
-              A
+            <div className="h-9 w-9 rounded-xl bg-white dark:bg-card border border-border/80 flex items-center justify-center p-1 shadow-xs shrink-0 overflow-hidden">
+              <img src="/logo.png" alt="ALAP Logo" className="h-full w-full object-contain" />
             </div>
             {!isCollapsed && (
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-lg text-foreground tracking-tight">ALAP</span>
+                  <span className="font-sf font-black text-lg text-[#5B5CE2] dark:text-[#7C7EF2] tracking-tight">ALAP</span>
                   <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md bg-[#5B5CE2]/10 text-[#5B5CE2] dark:bg-[#7C7EF2]/20 dark:text-[#7C7EF2]">
                     {user?.role || "PORTAL"}
                   </span>

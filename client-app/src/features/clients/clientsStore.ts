@@ -33,7 +33,7 @@ export function saveStoredClients(clients: ClientRecord[]): void {
 
 export function addClientRecord(newClientData: Partial<ClientRecord>): ClientRecord {
   const existing = getStoredClients();
-  
+
   const created: ClientRecord = {
     id: `CLT-${1000 + existing.length + 1}`,
     name: newClientData.name || "Client Contact",
@@ -68,7 +68,7 @@ export function convertLeadToClientRecord(lead: {
   // Check if client with matching company or email already exists
   const found = existing.find(
     (c) => c.email.toLowerCase() === lead.email.toLowerCase() ||
-           c.company.toLowerCase() === lead.company.toLowerCase()
+      c.company.toLowerCase() === lead.company.toLowerCase()
   );
 
   if (found) {

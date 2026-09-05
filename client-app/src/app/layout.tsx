@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ALAP Client Manager | Client Operations & Lead Portal",
   description: "Internal client management, lead queue, and solution tracking dashboard for ALAP.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

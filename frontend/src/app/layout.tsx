@@ -47,6 +47,11 @@ export const metadata: Metadata = {
   authors: [{ name: "ALAP Consultancy Team" }],
   creator: "ALAP",
   publisher: "ALAP",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -62,7 +67,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${baseUrl}/icon.svg`,
+        url: `${baseUrl}/logo.png`,
         width: 800,
         height: 800,
         alt: "ALAP Business Automation",
@@ -74,7 +79,7 @@ export const metadata: Metadata = {
     title: "ALAP (আলাপ) | Business Automation & Digital Solutions",
     description:
       "Tell us what takes too much time. ALAP turns manual business overhead into automated digital workflows.",
-    images: [`${baseUrl}/icon.svg`],
+    images: [`${baseUrl}/logo.png`],
   },
   robots: {
     index: true,
