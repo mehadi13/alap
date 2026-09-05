@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  # PostgreSQL Database Service
+  # 1. PostgreSQL Database Service
   postgres:
     image: postgres:16-alpine
     container_name: alap-postgres
     restart: always
     environment:
-      POSTGRES_DB: alap_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB:-alap_db}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
       - "5432:5432"
     volumes:
@@ -22,21 +22,81 @@ services:
     networks:
       - alap-network
 
-  # Redis Cache & Session Store Service
+  # 2. Redis Cache & Session Store Service
   redis:
     image: redis:7-alpine
     container_name: alap-redis
     restart: always
-    command: redis-server --requirepass redis123 --appendonly yes
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis123} --appendonly yes
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "redis123", "ping"]
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redis123}", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - alap-network
+
+  # 3. Spring Boot Backend API Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: alap-backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-alap_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_REDIS_PASSWORD: ${REDIS_PASSWORD:-redis123}
+      ALAP_JWT_SECRET: ${ALAP_JWT_SECRET:-ALAP_SUPER_SECURE_JWT_SECRET_KEY_FOR_PRODUCTION_STABILITY_2026}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-https://discord.com/api/webhooks/1545255301899489432/YmsfHKIWUkvoD-ID9svZW53xF0f6JzfUwpYmSQb_574jn-yuxMW31YkbVgDvP8z6plup}
+    networks:
+      - alap-network
+
+  # 4. Next.js Landing & Consultation Frontend App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: alap-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://187.77.152.224:8080}
+    networks:
+      - alap-network
+
+  # 5. Next.js Client Portal & Documentation Browser App
+  client-app:
+    build:
+      context: .
+      dockerfile: client-app/Dockerfile
+    container_name: alap-client-app
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://187.77.152.224:8080}
     networks:
       - alap-network
 
