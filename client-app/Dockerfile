@@ -5,7 +5,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
+# Install dependencies based on package manager
 COPY package.json package-lock.json* ./
 RUN npm ci
 
@@ -14,8 +14,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Copy docs directory from root context if available
-COPY docs ./docs
 
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
@@ -39,8 +37,6 @@ RUN chown nextjs:nodejs .next
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# Copy docs into runner container if available
-COPY --from=builder --chown=nextjs:nodejs /app/docs ./docs
 
 USER nextjs
 
